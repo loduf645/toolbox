@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>Toolbox — Koleksi Alat Bantu Online</title>
+<meta name="description" content="Kumpulan 23 alat bantu online: QR generator, password generator, image resizer, prompt studio, konverter unit, JSON formatter, Markdown previewer, dan lainnya. Input diproses lokal di browser Anda.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Manrope:wght@400..800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3/dist/purify.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+<style>
+/*@@CSS@@*/
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="container site-header-inner">
+    <button class="logo" onclick="navigate('home')" aria-label="Kembali ke beranda">
+      <span class="logo-mark" aria-hidden="true"></span>
+      <span>Toolbox</span>
+    </button>
+    <div class="header-meta">
+      <span class="badge" title="Input diproses lokal; font & library dimuat dari CDN"><span class="dot"></span> Pemrosesan lokal</span>
+      <span>v4.3 (Accuracy & A11y)</span>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <section id="home-view">
+    <div class="hero">
+      <div class="hero-eyebrow"><span class="dot"></span> 23 alat bantu · gratis · tanpa login</div>
+      <h1>Kotak alat <em>serbaguna</em><br>untuk hal-hal harian.</h1>
+      <p>Koleksi tools kecil yang cepat, rapi, dan menghormati privasi Anda. Input yang Anda masukkan diproses secara lokal di browser dan tidak dikirim ke server kami. <span style="opacity:.75">(Font &amp; library dimuat dari CDN pihak ketiga saat halaman dibuka.)</span></p>
+
+      <div class="search-wrap" id="search-wrap">
+        <div class="search-box" role="combobox" aria-expanded="false" aria-haspopup="listbox" aria-owns="search-panel">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="20" y1="20" x2="16.65" y2="16.65"/></svg>
+          <input id="search-input" type="text" autocomplete="off" spellcheck="false"
+                 placeholder="Cari alat… (mis. qr, sandi, kalkulator)"
+                 aria-label="Cari alat" aria-autocomplete="list" aria-controls="search-panel">
+          <button class="search-clear" id="search-clear" type="button" aria-label="Kosongkan pencarian">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+          <span class="search-kbd" aria-hidden="true"><kbd>/</kbd></span>
+        </div>
+        <div class="search-panel" id="search-panel" role="listbox" aria-label="Hasil pencarian"></div>
+        <div id="search-live" class="sr-only" role="status" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <div id="recent-section" class="recent-section" style="display:none">
+      <div class="section-header">
+        <h2 class="section-title">Baru saja dipakai</h2>
+        <button class="btn-ghost btn" onclick="clearRecent()" style="padding:4px 10px;font-size:12px">Bersihkan</button>
+      </div>
+      <div class="recent-strip" id="recent-strip"></div>
+    </div>
+
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Semua Alat <span class="count" id="tools-count"></span></h2>
+        <span class="section-meta">Pilih kategori untuk memfilter</span>
+      </div>
+      <div class="filter-bar" id="filter-bar"></div>
+      <div class="tools-grid" id="tools-grid"></div>
+    </section>
+  </section>
+
+  <section id="tool-view" style="display:none"></section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <span>Dibuat dengan rapi. Pemrosesan input berjalan di browser Anda; font &amp; library dimuat via CDN.</span>
+    <span>Tekan <kbd style="padding:2px 6px;background:var(--surface);border:1px solid var(--border);border-radius:4px;font-size:11px;font-family:monospace">Esc</kbd> untuk kembali</span>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/*@@TOC@@*/
+/*@@SCRIPTS@@*/
+</script>
+</body>
+</html>
