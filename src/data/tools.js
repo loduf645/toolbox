@@ -24,7 +24,11 @@ const TOOLS = [
   { id:'json', name:'JSON Formatter', cat:'dev', desc:'Format JSON berantakan, validasi error, dan lihat struktur dengan syntax highlighting.', render:renderJSON, mount:mountJSON },
   { id:'word', name:'Word & Reading Time', cat:'text', desc:'Hitung jumlah kata, karakter, kalimat, dan estimasi waktu baca suatu teks.', render:renderWord, mount:mountWord },
   { id:'texttransformer', name:'Text Transformer', cat:'text', desc:'Balik, cermin, dan transformasi teks dengan berbagai mode. Live preview & copy dengan mudah.', render:renderTextTransformer, mount:mountTextTransformer },
-  { id:'promptstudio', name:'Prompt Studio', cat:'text', desc:'Editor Markdown + pembuat prompt AI. Template siap pakai, blok prompt, live preview, dan export.', render:renderPromptStudio, mount:mountPromptStudio }
+  { id:'promptstudio', name:'Prompt Studio', cat:'text', desc:'Editor Markdown + pembuat prompt AI. Template siap pakai, blok prompt, live preview, dan export.', render:renderPromptStudio, mount:mountPromptStudio },
+  { id:'base64', name:'Base64 Encoder / Decoder', cat:'dev', desc:'Encode teks ke Base64 dan decode kembali — aman untuk Unicode, dengan live convert dan deteksi otomatis.', render:renderBase64, mount:mountBase64 },
+  { id:'gradient', name:'CSS Gradient Generator', cat:'generator', desc:'Rancang gradient linear atau radial dengan color stop, preset populer, dan salin kode CSS siap pakai.', render:renderGradient, mount:mountGradient },
+  { id:'imgbase64', name:'Image to Base64', cat:'konverter', desc:'Ubah gambar menjadi string Base64 dan Data URI secara lokal — siap ditempel ke CSS atau HTML.', render:renderImgBase64, mount:mountImgBase64 },
+  { id:'color', name:'Color Picker & Palette', cat:'generator', desc:'Pilih warna, lihat nilai HEX/RGB/HSL, dan generate palette harmonis: komplementer hingga monokrom.', render:renderColor, mount:mountColor }
 ];
 
 const CATEGORIES = [

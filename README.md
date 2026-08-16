@@ -1,6 +1,7 @@
 # Toolbox — Koleksi Alat Bantu Online (hasil refactor modular)
 
-23 alat bantu client-side (QR, password, kalkulator, diff, image resizer, dll.)
+27 alat bantu client-side (QR, password, kalkulator, diff, image resizer, Base64,
+gradient CSS, color picker, dll.)
 yang didistribusikan sebagai **satu file `index.html`** — bisa dibuka langsung dari
 `file://` tanpa server. Kode sumbernya dipecah per modul agar mudah dinavigasi,
 dengan **logic murni terpisah dari DOM** dan **unit test** sebagai jaring pengaman.
@@ -33,7 +34,10 @@ toolbox/
 │   │   │                                       string editor Markdown (Prompt Studio)
 │   │   ├── crypto-helpers.js   TB.Crypto     — MD5, inti password, UUID/random ID
 │   │   ├── json-helpers.js     TB.Json       — format/minify/highlight JSON
-│   │   └── search-engine.js    TB.SearchEngine — fuzzy matching, skoring, saran
+│   │   ├── search-engine.js    TB.SearchEngine — fuzzy matching, skoring, saran
+│   │   ├── base64.js           TB.Base64     — encode/decode UTF-8 aman, deteksi, data URI
+│   │   ├── color-helpers.js    TB.Color      — konversi HEX/RGB/HSL + generator palette
+│   │   └── gradient.js         TB.Gradient   — builder CSS gradient + preset
 │   ├── data/               ← data statis
 │   │   ├── icons.js, aliases.js, tools.js, fake-db.js, prompt-data.js
 │   ├── core/               ← lapisan DOM/infrastruktur
@@ -46,7 +50,8 @@ toolbox/
 │       └── qr.js, password.js, unit.js, image-resizer.js, bmi.js, zakat.js,
 │           loan.js, age.js, name.js, decision.js, lorem.js, gacha.js, mc.js,
 │           uuid.js, fake.js, slug.js, hash.js, diff.js, markdown.js, json.js,
-│           word.js, text-transformer.js, prompt-studio.js
+│           word.js, text-transformer.js, prompt-studio.js, base64.js,
+│           gradient.js, imgbase64.js, color.js
 └── tests/
     ├── run.js              ← jalankan SEMUA unit test:  node tests/run.js
     ├── harness.js          ← micro-framework assert (tanpa dependensi)
@@ -104,6 +109,29 @@ Hitung, ganti input, dsb.) pada KEDUA file dan menuntut output byte-identik.
    lalu `node build.js`.
 4. Fungsi pure diberi **JSDoc singkat** (input → output) agar mudah dipakai
    ulang dan di-test.
+
+## Changelog — v4.4: 4 tool baru
+
+Ditambahkan mengikuti pola proyek yang sudah mapan (entry `tools.js`, ikon
+`icons.js`, alias `aliases.js`, satu file per tool, logic murni di `pure/`,
+terdaftar di `MODULES` build.js):
+
+| Tool | Kategori | Logic murni |
+|------|----------|-------------|
+| **Base64 Encoder / Decoder** (`base64`) | dev | `TB.Base64` — encode/decode UTF-8 aman Unicode, deteksi otomatis Base64 di mode Decode, live convert, swap yang membalik mode |
+| **CSS Gradient Generator** (`gradient`) | generator | `TB.Gradient` — builder linear/radial, arah keyword + sudut custom, clamp posisi stop, 6 preset |
+| **Image to Base64** (`imgbase64`) | konverter | `TB.Base64` (bytes + data URI) + `TB.Calc.formatBytes`; ObjectURL dibersihkan lewat `_toolCleanup` |
+| **Color Picker & Palette** (`color`) | generator | `TB.Color` — HEX/RGB/HSL dua arah + palette komplementer, analogous, triadic, monokromatik, shades & tints (klik swatch = jadi warna utama) |
+
+Catatan implementasi:
+- Encoder Base64 ditulis manual (bukan `btoa`) agar identik di browser & Node
+  dan lolos fuzz test 2.000 kasus terhadap `Buffer` Node. (Bug shift-bit pada
+  draft awal ditemukan & diperbaiki lewat test ini.)
+- Hero/meta diperbarui 23 → 27 alat; badge versi v4.3 → v4.4.
+- Unit test 131 → 169 (`base64.test.js`, `color.test.js`, `gradient.test.js`).
+- Smoke test memperluas `TOOL_IDS` ke 27 + interaksi `base64Encode/Decode`,
+  `gradientCss`, `colorValues`; golden comparison vs versi lama tetap lulus
+  (23 tool lama identik, 4 tool baru diverifikasi terpisah).
 
 ## Changelog — tahap QA (perbaikan bug)
 

@@ -29,6 +29,9 @@ const MODULES = [
   'pure/crypto-helpers.js',
   'pure/json-helpers.js',
   'pure/search-engine.js',
+  'pure/base64.js',
+  'pure/color-helpers.js',
+  'pure/gradient.js',
 
   'data/icons.js',
   'data/aliases.js',
@@ -65,6 +68,10 @@ const MODULES = [
   'tools/word.js',
   'tools/text-transformer.js',
   'tools/prompt-studio.js',
+  'tools/base64.js',
+  'tools/gradient.js',
+  'tools/imgbase64.js',
+  'tools/color.js',
 
   'app.js'
 ];
@@ -78,6 +85,9 @@ const TITLES = {
   'pure/crypto-helpers.js':    'TB.Crypto — MD5, password, UUID/random ID',
   'pure/json-helpers.js':      'TB.Json — format/minify/highlight JSON',
   'pure/search-engine.js':     'TB.SearchEngine — matching fuzzy, skoring, saran',
+  'pure/base64.js':            'TB.Base64 — encode/decode UTF-8 aman, deteksi, data URI',
+  'pure/color-helpers.js':     'TB.Color — konversi HEX/RGB/HSL + generator palette',
+  'pure/gradient.js':          'TB.Gradient — builder CSS gradient + preset',
   'data/icons.js':             'ICONS — ikon SVG inline',
   'data/aliases.js':           'ALIASES — sinonim pencarian per tool',
   'data/tools.js':             'TOOLS + CATEGORIES — registrasi tool',
@@ -111,6 +121,10 @@ const TITLES = {
   'tools/word.js':             'Tool 21 — Word & Reading Time',
   'tools/text-transformer.js': 'Tool 22 — Text Transformer',
   'tools/prompt-studio.js':    'Tool 23 — Prompt Studio',
+  'tools/base64.js':           'Tool 24 — Base64 Encoder / Decoder',
+  'tools/gradient.js':         'Tool 25 — CSS Gradient Generator',
+  'tools/imgbase64.js':        'Tool 26 — Image to Base64',
+  'tools/color.js':            'Tool 27 — Color Picker & Palette',
   'app.js':                    'INIT — bootstrap aplikasi'
 };
 

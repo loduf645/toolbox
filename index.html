@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 <title>Toolbox — Koleksi Alat Bantu Online</title>
-<meta name="description" content="Kumpulan 23 alat bantu online: QR generator, password generator, image resizer, prompt studio, konverter unit, JSON formatter, Markdown previewer, dan lainnya. Input diproses lokal di browser Anda.">
+<meta name="description" content="Kumpulan 27 alat bantu online: QR generator, password generator, image resizer, prompt studio, konverter unit, JSON formatter, Markdown previewer, Base64, gradient CSS, color picker, dan lainnya. Input diproses lokal di browser Anda.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Manrope:wght@400..800&display=swap" rel="stylesheet">
@@ -451,7 +451,7 @@ canvas.wheel{max-width:100%;height:auto}
     </button>
     <div class="header-meta">
       <span class="badge" title="Input diproses lokal; font & library dimuat dari CDN"><span class="dot"></span> Pemrosesan lokal</span>
-      <span>v4.3 (Accuracy & A11y)</span>
+      <span>v4.4 (Modular + QA)</span>
     </div>
   </div>
 </header>
@@ -459,7 +459,7 @@ canvas.wheel{max-width:100%;height:auto}
 <main class="container">
   <section id="home-view">
     <div class="hero">
-      <div class="hero-eyebrow"><span class="dot"></span> 23 alat bantu · gratis · tanpa login</div>
+      <div class="hero-eyebrow"><span class="dot"></span> 27 alat bantu · gratis · tanpa login</div>
       <h1>Kotak alat <em>serbaguna</em><br>untuk hal-hal harian.</h1>
       <p>Koleksi tools kecil yang cepat, rapi, dan menghormati privasi Anda. Input yang Anda masukkan diproses secara lokal di browser dan tidak dikirim ke server kami. <span style="opacity:.75">(Font &amp; library dimuat dari CDN pihak ketiga saat halaman dibuka.)</span></p>
 
@@ -515,49 +515,56 @@ canvas.wheel{max-width:100%;height:auto}
    Nomor baris = posisi section pada file hasil bundel ini.
    Sumber modular: src/pure, src/data, src/core, src/tools + src/app.js
    ------------------------------------------------------------
-     560  pure/text-utils.js         TB.TextUtils — escape, slug, penghitung teks, format angka
-     671  pure/calculators.js        TB.Calc — loan, zakat, BMI, unit, umur, MC, image resize
-    1009  pure/diff-engine.js        TB.Diff — algoritma Myers, statistik, pairing baris
-    1232  pure/text-transforms.js    TB.TextTransforms — reverse/mirror/flip + operasi editor MD
-    1385  pure/crypto-helpers.js     TB.Crypto — MD5, password, UUID/random ID
-    1535  pure/json-helpers.js       TB.Json — format/minify/highlight JSON
-    1586  pure/search-engine.js      TB.SearchEngine — matching fuzzy, skoring, saran
-    1792  data/icons.js              ICONS — ikon SVG inline
-    1832  data/aliases.js            ALIASES — sinonim pencarian per tool
-    1863  data/tools.js              TOOLS + CATEGORIES — registrasi tool
-    1905  data/fake-db.js            FAKE_DB — kosakata fake data
-    1917  data/prompt-data.js        PS_STARTER/PS_BLOCKS/PS_CATEGORIES — data Prompt Studio
-    2211  core/utils.js              sanitize, $, $, esc, fmtNum, toast, copyText
-    2288  core/lifecycle.js          _toolCleanup / runToolCleanup
-    2302  core/router.js             router hash + dispatcher render()
-    2353  core/search.js             UI live search (panel, riwayat, keyboard)
-    2658  core/home.js               renderHome, recent, renderTool
-    2758  tools/qr.js                Tool 01 — QR Code Generator
-    2833  tools/password.js          Tool 02 — Password Generator
-    2906  tools/unit.js              Tool 03 — Konverter Unit
-    2963  tools/image-resizer.js     Tool 04 — Image Resizer
-    3535  tools/bmi.js               Tool 05 — Kalkulator BMI & Kalori
-    3570  tools/zakat.js             Tool 06 — Kalkulator Zakat
-    3604  tools/loan.js              Tool 07 — Kalkulator Cicilan & KPR
-    3643  tools/age.js               Tool 08 — Kalkulator Umur & Countdown
-    3709  tools/name.js              Tool 09 — Generator Nama Acak
-    3735  tools/decision.js          Tool 10 — Pengambil Keputusan Acak
-    3803  tools/lorem.js             Tool 11 — Lorem Ipsum Indonesia
-    3819  tools/gacha.js             Tool 12 — Simulator Gacha
-    3897  tools/mc.js                Tool 13 — Minecraft Coordinate Converter
-    3922  tools/uuid.js              Tool 14 — UUID / ID Generator
-    3960  tools/fake.js              Tool 15 — Fake Data Generator
-    4005  tools/slug.js              Tool 16 — Slug Generator
-    4039  tools/hash.js              Tool 17 — Hash Generator
-    4099  tools/diff.js              Tool 18 — Text Diff Checker
-    4357  tools/markdown.js          Tool 19 — Markdown Previewer
-    4380  tools/json.js              Tool 20 — JSON Formatter
-    4417  tools/word.js              Tool 21 — Word & Reading Time
-    4460  tools/text-transformer.js  Tool 22 — Text Transformer
-    4556  tools/prompt-studio.js     Tool 23 — Prompt Studio
-    4878  app.js                     INIT — bootstrap aplikasi
+     567  pure/text-utils.js         TB.TextUtils — escape, slug, penghitung teks, format angka
+     678  pure/calculators.js        TB.Calc — loan, zakat, BMI, unit, umur, MC, image resize
+    1016  pure/diff-engine.js        TB.Diff — algoritma Myers, statistik, pairing baris
+    1239  pure/text-transforms.js    TB.TextTransforms — reverse/mirror/flip + operasi editor MD
+    1392  pure/crypto-helpers.js     TB.Crypto — MD5, password, UUID/random ID
+    1542  pure/json-helpers.js       TB.Json — format/minify/highlight JSON
+    1593  pure/search-engine.js      TB.SearchEngine — matching fuzzy, skoring, saran
+    1799  pure/base64.js             TB.Base64 — encode/decode UTF-8 aman, deteksi, data URI
+    1911  pure/color-helpers.js      TB.Color — konversi HEX/RGB/HSL + generator palette
+    2044  pure/gradient.js           TB.Gradient — builder CSS gradient + preset
+    2114  data/icons.js              ICONS — ikon SVG inline
+    2158  data/aliases.js            ALIASES — sinonim pencarian per tool
+    2193  data/tools.js              TOOLS + CATEGORIES — registrasi tool
+    2239  data/fake-db.js            FAKE_DB — kosakata fake data
+    2251  data/prompt-data.js        PS_STARTER/PS_BLOCKS/PS_CATEGORIES — data Prompt Studio
+    2545  core/utils.js              sanitize, $, $, esc, fmtNum, toast, copyText
+    2622  core/lifecycle.js          _toolCleanup / runToolCleanup
+    2636  core/router.js             router hash + dispatcher render()
+    2687  core/search.js             UI live search (panel, riwayat, keyboard)
+    2992  core/home.js               renderHome, recent, renderTool
+    3092  tools/qr.js                Tool 01 — QR Code Generator
+    3167  tools/password.js          Tool 02 — Password Generator
+    3240  tools/unit.js              Tool 03 — Konverter Unit
+    3297  tools/image-resizer.js     Tool 04 — Image Resizer
+    3869  tools/bmi.js               Tool 05 — Kalkulator BMI & Kalori
+    3904  tools/zakat.js             Tool 06 — Kalkulator Zakat
+    3938  tools/loan.js              Tool 07 — Kalkulator Cicilan & KPR
+    3977  tools/age.js               Tool 08 — Kalkulator Umur & Countdown
+    4043  tools/name.js              Tool 09 — Generator Nama Acak
+    4069  tools/decision.js          Tool 10 — Pengambil Keputusan Acak
+    4137  tools/lorem.js             Tool 11 — Lorem Ipsum Indonesia
+    4153  tools/gacha.js             Tool 12 — Simulator Gacha
+    4231  tools/mc.js                Tool 13 — Minecraft Coordinate Converter
+    4256  tools/uuid.js              Tool 14 — UUID / ID Generator
+    4294  tools/fake.js              Tool 15 — Fake Data Generator
+    4339  tools/slug.js              Tool 16 — Slug Generator
+    4373  tools/hash.js              Tool 17 — Hash Generator
+    4433  tools/diff.js              Tool 18 — Text Diff Checker
+    4691  tools/markdown.js          Tool 19 — Markdown Previewer
+    4714  tools/json.js              Tool 20 — JSON Formatter
+    4751  tools/word.js              Tool 21 — Word & Reading Time
+    4794  tools/text-transformer.js  Tool 22 — Text Transformer
+    4890  tools/prompt-studio.js     Tool 23 — Prompt Studio
+    5212  tools/base64.js            Tool 24 — Base64 Encoder / Decoder
+    5319  tools/gradient.js          Tool 25 — CSS Gradient Generator
+    5463  tools/imgbase64.js         Tool 26 — Image to Base64
+    5587  tools/color.js             Tool 27 — Color Picker & Palette
+    5693  app.js                     INIT — bootstrap aplikasi
    ============================================================ */
-/* ===== [1/41] pure/text-utils.js ===== */
+/* ===== [1/48] pure/text-utils.js ===== */
 /* ============================================================
    PURE: text-utils.js
    Utilitas teks & angka murni — TANPA DOM, TANPA localStorage,
@@ -668,7 +675,7 @@ canvas.wheel{max-width:100%;height:auto}
   };
 });
 
-/* ===== [2/41] pure/calculators.js ===== */
+/* ===== [2/48] pure/calculators.js ===== */
 /* ============================================================
    PURE: calculators.js
    Semua rumus kalkulator — TANPA DOM. Diuji di tests/calculators.test.js
@@ -1006,7 +1013,7 @@ canvas.wheel{max-width:100%;height:auto}
   };
 });
 
-/* ===== [3/41] pure/diff-engine.js ===== */
+/* ===== [3/48] pure/diff-engine.js ===== */
 /* ============================================================
    PURE: diff-engine.js
    Inti algoritma diff (Myers O((n+m)·d)) — TANPA DOM.
@@ -1229,7 +1236,7 @@ canvas.wheel{max-width:100%;height:auto}
   };
 });
 
-/* ===== [4/41] pure/text-transforms.js ===== */
+/* ===== [4/48] pure/text-transforms.js ===== */
 /* ============================================================
    PURE: text-transforms.js
    Transformasi teks murni — TANPA DOM. Diuji di tests/text-transforms.test.js
@@ -1382,7 +1389,7 @@ canvas.wheel{max-width:100%;height:auto}
   };
 });
 
-/* ===== [5/41] pure/crypto-helpers.js ===== */
+/* ===== [5/48] pure/crypto-helpers.js ===== */
 /* ============================================================
    PURE: crypto-helpers.js
    Helper kriptografi & pembuatan ID — TANPA DOM.
@@ -1532,7 +1539,7 @@ function md5(string){function RotateLeft(lValue,iShiftBits){return(lValue<<iShif
   };
 });
 
-/* ===== [6/41] pure/json-helpers.js ===== */
+/* ===== [6/48] pure/json-helpers.js ===== */
 /* ============================================================
    PURE: json-helpers.js
    Operasi JSON murni — TANPA DOM. Diuji di tests/json.test.js
@@ -1583,7 +1590,7 @@ function md5(string){function RotateLeft(lValue,iShiftBits){return(lValue<<iShif
   return { formatJson, minifyJson, highlightJson };
 });
 
-/* ===== [7/41] pure/search-engine.js ===== */
+/* ===== [7/48] pure/search-engine.js ===== */
 /* ============================================================
    PURE: search-engine.js
    Mesin pencarian tool — bagian inti yang MURNI (tanpa DOM & tanpa
@@ -1789,7 +1796,322 @@ function md5(string){function RotateLeft(lValue,iShiftBits){return(lValue<<iShif
   };
 });
 
-/* ===== [8/41] data/icons.js ===== */
+/* ===== [8/48] pure/base64.js ===== */
+/* ============================================================
+   PURE: base64.js
+   Encode/decode Base64 murni — TANPA DOM (TextEncoder/TextDecoder
+   adalah API runtime, bukan DOM). Diuji di tests/base64.test.js
+   Dipakai oleh tools/base64.js dan tools/imgbase64.js.
+   ============================================================ */
+(function (root, factory) {
+  if (typeof module === 'object' && typeof module.exports === 'object') {
+    module.exports = factory();                    // Node (unit test)
+  } else {
+    root.TB = root.TB || {};
+    root.TB.Base64 = factory();                    // Browser (bundel)
+  }
+})(typeof self !== 'undefined' ? self : globalThis, function () {
+  'use strict';
+
+  const B64_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+
+  /**
+   * Encode array byte menjadi string Base64 (padding '=').
+   * Implementasi manual — tidak bergantung btoa, sehingga jalan di Node & browser.
+   * @param {Uint8Array|number[]} bytes
+   * @returns {string}
+   */
+  function bytesToBase64(bytes) {
+    let out = '';
+    for (let i = 0; i < bytes.length; i += 3) {
+      const b0 = bytes[i], b1 = bytes[i + 1], b2 = bytes[i + 2];
+      out += B64_CHARS[b0 >> 2];
+      out += B64_CHARS[((b0 & 3) << 4) | (b1 === undefined ? 0 : b1 >> 4)];
+      out += b1 === undefined ? '=' : B64_CHARS[((b1 & 15) << 2) | (b2 === undefined ? 0 : b2 >> 6)];
+      out += b2 === undefined ? '=' : B64_CHARS[b2 & 63];
+    }
+    return out;
+  }
+
+  /** Buang whitespace/baris baru (umum pada Base64 yang diformat). @param {string} input */
+  function cleanInput(input) {
+    return String(input).replace(/\s+/g, '');
+  }
+
+  /**
+   * Decode string Base64 menjadi array byte.
+   * @param {string} input
+   * @returns {Uint8Array}
+   * @throws {Error} pesan Bahasa Indonesia bila format tidak valid
+   */
+  function base64ToBytes(input) {
+    const s = cleanInput(input);
+    if (s.length === 0) return new Uint8Array(0);
+    if (s.length % 4 !== 0) throw new Error('Panjang Base64 tidak valid (harus kelipatan 4 karakter)');
+    if (!/^[A-Za-z0-9+/]+={0,2}$/.test(s)) throw new Error('Mengandung karakter di luar alfabet Base64');
+    const pad = s.endsWith('==') ? 2 : s.endsWith('=') ? 1 : 0;
+    const out = new Uint8Array((s.length / 4) * 3 - pad);
+    let o = 0;
+    for (let i = 0; i < s.length; i += 4) {
+      const n = (B64_CHARS.indexOf(s[i]) << 18) |
+                (B64_CHARS.indexOf(s[i + 1]) << 12) |
+                ((s[i + 2] === '=' ? 0 : B64_CHARS.indexOf(s[i + 2])) << 6) |
+                (s[i + 3] === '=' ? 0 : B64_CHARS.indexOf(s[i + 3]));
+      if (o < out.length) out[o++] = (n >> 16) & 255;
+      if (o < out.length) out[o++] = (n >> 8) & 255;
+      if (o < out.length) out[o++] = n & 255;
+    }
+    return out;
+  }
+
+  /**
+   * Encode teks (UTF-8 — aman untuk Unicode & emoji) menjadi Base64.
+   * @param {string} text @returns {string}
+   */
+  function encode(text) {
+    return bytesToBase64(new TextEncoder().encode(String(text)));
+  }
+
+  /**
+   * Decode Base64 menjadi teks UTF-8.
+   * @param {string} input @returns {string}
+   * @throws {Error} bila format Base64 salah atau byte bukan UTF-8 valid
+   */
+  function decode(input) {
+    const bytes = base64ToBytes(input);
+    try {
+      return new TextDecoder('utf-8', { fatal: true }).decode(bytes);
+    } catch (e) {
+      throw new Error('Base64 valid, tetapi isinya bukan teks UTF-8 (mungkin data biner)');
+    }
+  }
+
+  /**
+   * Deteksi cepat apakah string terlihat seperti Base64 valid
+   * (dipakai untuk hints otomatis pada mode Decode).
+   * @param {string} input @returns {boolean}
+   */
+  function isLikelyBase64(input) {
+    const s = cleanInput(input);
+    return s.length > 0 && s.length % 4 === 0 && /^[A-Za-z0-9+/]+={0,2}$/.test(s);
+  }
+
+  /**
+   * Susun Data URI lengkap.
+   * @param {string} mime - mis. 'image/png' @param {string} base64
+   * @returns {string} `data:<mime>;base64,<data>`
+   */
+  function dataUri(mime, base64) {
+    return `data:${mime};base64,${base64}`;
+  }
+
+  return { bytesToBase64, base64ToBytes, encode, decode, isLikelyBase64, cleanInput, dataUri };
+});
+
+/* ===== [9/48] pure/color-helpers.js ===== */
+/* ============================================================
+   PURE: color-helpers.js
+   Konversi warna & generator palette — TANPA DOM.
+   Diuji di tests/color.test.js. Dipakai oleh tools/color.js.
+   ============================================================ */
+(function (root, factory) {
+  if (typeof module === 'object' && typeof module.exports === 'object') {
+    module.exports = factory();                    // Node (unit test)
+  } else {
+    root.TB = root.TB || {};
+    root.TB.Color = factory();                     // Browser (bundel)
+  }
+})(typeof self !== 'undefined' ? self : globalThis, function () {
+  'use strict';
+
+  /**
+   * Normalisasi HEX: terima '#abc', 'abc', '#AABBCC' -> '#aabbcc'.
+   * @param {string} hex @returns {?string} null bila tidak valid
+   */
+  function normalizeHex(hex) {
+    let h = String(hex).trim().replace(/^#/, '');
+    if (/^[0-9a-f]{3}$/i.test(h)) h = h.split('').map(c => c + c).join('');
+    if (!/^[0-9a-f]{6}$/i.test(h)) return null;
+    return '#' + h.toLowerCase();
+  }
+
+  /** HEX -> RGB (0..255). @param {string} hex @returns {?{r:number,g:number,b:number}} */
+  function hexToRgb(hex) {
+    const n = normalizeHex(hex);
+    if (!n) return null;
+    return { r: parseInt(n.slice(1, 3), 16), g: parseInt(n.slice(3, 5), 16), b: parseInt(n.slice(5, 7), 16) };
+  }
+
+  /** RGB (0..255, boleh pecahan) -> HEX lowercase. */
+  function rgbToHex(r, g, b) {
+    const p = v => Math.max(0, Math.min(255, Math.round(v))).toString(16).padStart(2, '0');
+    return '#' + p(r) + p(g) + p(b);
+  }
+
+  /**
+   * RGB (0..255) -> HSL.
+   * @returns {{h:number, s:number, l:number}} h: 0..360, s/l: 0..100
+   */
+  function rgbToHsl(r, g, b) {
+    r /= 255; g /= 255; b /= 255;
+    const max = Math.max(r, g, b), min = Math.min(r, g, b);
+    let h = 0, s = 0;
+    const l = (max + min) / 2;
+    if (max !== min) {
+      const d = max - min;
+      s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+      if (max === r) h = ((g - b) / d + (g < b ? 6 : 0));
+      else if (max === g) h = (b - r) / d + 2;
+      else h = (r - g) / d + 4;
+      h *= 60;
+    }
+    return { h, s: s * 100, l: l * 100 };
+  }
+
+  /**
+   * HSL -> RGB.
+   * @param {number} h 0..360 (di-wrap otomatis) @param {number} s 0..100 @param {number} l 0..100
+   * @returns {{r:number,g:number,b:number}} masing-masing 0..255 (dibulatkan)
+   */
+  function hslToRgb(h, s, l) {
+    h = ((h % 360) + 360) % 360; s /= 100; l /= 100;
+    const c = (1 - Math.abs(2 * l - 1)) * s;
+    const x = c * (1 - Math.abs((h / 60) % 2 - 1));
+    const m = l - c / 2;
+    let rp, gp, bp;
+    if (h < 60)       { rp = c; gp = x; bp = 0; }
+    else if (h < 120) { rp = x; gp = c; bp = 0; }
+    else if (h < 180) { rp = 0; gp = c; bp = x; }
+    else if (h < 240) { rp = 0; gp = x; bp = c; }
+    else if (h < 300) { rp = x; gp = 0; bp = c; }
+    else              { rp = c; gp = 0; bp = x; }
+    return { r: Math.round((rp + m) * 255), g: Math.round((gp + m) * 255), b: Math.round((bp + m) * 255) };
+  }
+
+  /** Geser hue sejumlah derajat (wrap 0..360), saturasi & lightness tetap. @returns {string} HEX baru */
+  function shiftHue(hex, deg) {
+    const rgb = hexToRgb(hex);
+    if (!rgb) return null;
+    const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
+    return rgbToHex(...Object.values(hslToRgb(hsl.h + deg, hsl.s, hsl.l)));
+  }
+
+  /** Ubah lightness (hue & saturasi tetap). @param {number} lightness 0..100 @returns {string} HEX */
+  function withLightness(hex, lightness) {
+    const rgb = hexToRgb(hex);
+    if (!rgb) return null;
+    const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
+    const l = Math.max(0, Math.min(100, lightness));
+    return rgbToHex(...Object.values(hslToRgb(hsl.h, hsl.s, l)));
+  }
+
+  /** Format tampilan: `rgb(r, g, b)`. */
+  function formatRgb(rgb) { return `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`; }
+
+  /** Format tampilan: `hsl(h, s%, l%)` (dibulatkan). */
+  function formatHsl(hsl) { return `hsl(${Math.round(hsl.h)}, ${Math.round(hsl.s)}%, ${Math.round(hsl.l)}%)`; }
+
+  /**
+   * Generate semua skema palette untuk satu warna dasar.
+   * @param {string} hex
+   * @returns {{complementary:string[], analogous:string[], triadic:string[],
+   *            monochromatic:string[], shadesTints:string[]}}
+   */
+  function generatePalettes(hex) {
+    const rgb = hexToRgb(hex);
+    if (!rgb) return null;
+    const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
+    // Monokromatik: 5 tingkat lightness tetap, hue & saturasi sama.
+    const monochromatic = [12, 31, 50, 69, 88].map(l => rgbToHex(...Object.values(hslToRgb(hsl.h, hsl.s, l))));
+    // Shades (menuju hitam) & tints (menuju putih) relatif terhadap lightness warna dasar.
+    const shades = [0.25, 0.5, 0.75, 1].map(f => withLightness(hex, hsl.l * f));
+    const tints = [0.25, 0.5, 0.75, 1].map(f => withLightness(hex, hsl.l + (100 - hsl.l) * f));
+    return {
+      complementary: [hex, shiftHue(hex, 180)],
+      analogous: [shiftHue(hex, -30), hex, shiftHue(hex, 30)],
+      triadic: [hex, shiftHue(hex, 120), shiftHue(hex, 240)],
+      monochromatic,
+      shadesTints: shades.concat(tints)
+    };
+  }
+
+  return {
+    normalizeHex, hexToRgb, rgbToHex, rgbToHsl, hslToRgb,
+    shiftHue, withLightness, formatRgb, formatHsl, generatePalettes
+  };
+});
+
+/* ===== [10/48] pure/gradient.js ===== */
+/* ============================================================
+   PURE: gradient.js
+   Builder kode CSS gradient + data preset — TANPA DOM.
+   Diuji di tests/gradient.test.js. Dipakai oleh tools/gradient.js.
+   ============================================================ */
+(function (root, factory) {
+  if (typeof module === 'object' && typeof module.exports === 'object') {
+    module.exports = factory();                    // Node (unit test)
+  } else {
+    root.TB = root.TB || {};
+    root.TB.Gradient = factory();                  // Browser (bundel)
+  }
+})(typeof self !== 'undefined' ? self : globalThis, function () {
+  'use strict';
+
+  /** Arah keyword CSS untuk linear-gradient. */
+  const LINEAR_DIRECTIONS = [
+    'to top', 'to top right', 'to right', 'to bottom right',
+    'to bottom', 'to bottom left', 'to left', 'to top left'
+  ];
+
+  /** Preset gradient populer (nama + daftar warna). */
+  const GRADIENT_PRESETS = [
+    { name: 'Senja',      colors: ['#ff9966', '#ff5e62'] },
+    { name: 'Lautan',     colors: ['#2E3192', '#1BFFFF'] },
+    { name: 'Hutan',      colors: ['#134E5E', '#71B280'] },
+    { name: 'Ungu Malam', colors: ['#41295a', '#2F0743'] },
+    { name: 'Peach',      colors: ['#FFECD2', '#FCB69F'] },
+    { name: 'Bumi',       colors: ['#A8421C', '#D4A574'] }
+  ];
+
+  /** Clamp posisi stop ke 0..100. @param {*} pos @returns {number} */
+  function clampPos(pos) {
+    const n = parseFloat(pos);
+    if (!isFinite(n)) return 0;
+    return Math.max(0, Math.min(100, n));
+  }
+
+  /**
+   * Susun daftar color stop menjadi fragmen CSS: `#fff 0%, #000 100%`.
+   * @param {Array<{color:string, pos:number}>} stops
+   * @returns {string}
+   */
+  function stopsToCSS(stops) {
+    return stops.map(s => `${s.color} ${clampPos(s.pos)}%`).join(', ');
+  }
+
+  /**
+   * Bangun nilai CSS gradient lengkap.
+   * @param {{type:'linear'|'radial', direction?:string, angle?:number,
+   *          stops:Array<{color:string, pos:number}>}} opts
+   *   direction: salah satu LINEAR_DIRECTIONS, atau 'custom' untuk memakai angle.
+   * @returns {string} mis. `linear-gradient(to right, #ff0000 0%, #0000ff 100%)`
+   * @throws {Error} bila stop < 2
+   */
+  function buildGradientCSS(opts) {
+    const stops = opts.stops || [];
+    if (stops.length < 2) throw new Error('Minimal 2 color stop');
+    const list = stopsToCSS(stops);
+    if (opts.type === 'radial') return `radial-gradient(circle, ${list})`;
+    const dir = (opts.direction && opts.direction !== 'custom')
+      ? opts.direction
+      : `${Number(opts.angle) || 0}deg`;
+    return `linear-gradient(${dir}, ${list})`;
+  }
+
+  return { LINEAR_DIRECTIONS, GRADIENT_PRESETS, clampPos, stopsToCSS, buildGradientCSS };
+});
+
+/* ===== [11/48] data/icons.js ===== */
 /* ============================================================
    DATA: icons.js — Ikon SVG inline semua tool & UI
    ============================================================ */
@@ -1824,12 +2146,16 @@ const ICONS = {
   download:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>',
   texttransformer:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 6 4 10l4 4"/><path d="M4 10h16"/><path d="M16 14l4 4-4 4"/><path d="M20 18H4"/></svg>',
   promptstudio:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3l1.9 4.6 4.6 1.9-4.6 1.9L12 16l-1.9-4.6L5.5 9.5l4.6-1.9z"/><path d="M18.5 15.5l.8 1.9 1.9.8-1.9.8-.8 1.9-.8-1.9-1.9-.8 1.9-.8z"/></svg>',
+  base64:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m8 5-4 7 4 7"/><path d="m16 5 4 7-4 7"/><circle cx="12" cy="9.5" r="1"/><circle cx="12" cy="14.5" r="1"/></svg>',
+  gradient:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><path d="M12 3v18"/><path d="M12 3a9 9 0 0 1 0 18"/></svg>',
+  imgbase64:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="5" width="12" height="14" rx="2"/><circle cx="7" cy="9" r="1"/><path d="m5 17 3-3 4 4"/><path d="M18 8h3"/><path d="M18 12h3"/><path d="M18 16h3"/></svg>',
+  color:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3s6 6.5 6 10.5a6 6 0 0 1-12 0C6 9.5 12 3 12 3z"/></svg>',
   eye:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>',
   undo:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>',
   redo:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>'
 };
 
-/* ===== [9/41] data/aliases.js ===== */
+/* ===== [12/48] data/aliases.js ===== */
 /* ============================================================
    DATA: aliases.js — Alias / sinonim pencarian per tool
    ============================================================ */
@@ -1857,10 +2183,14 @@ const ALIASES = {
   json:['json','format','beautify','minify','validate','pretty print','api','parse'],
   word:['word','kata','hitung kata','word count','karakter','reading time','waktu baca','counter'],
   texttransformer:['text','teks','reverse','balik','mirror','cermin','flip','terbalik','upside down','transformasi','transformer','membalik','balik kata','reverse words','kecil','besar','kalimat'],
-  promptstudio:['prompt','studio','ai','template','markdown','editor','penulis','prompt engineering','blok prompt','preview','copywriting','tulis','konsep','draft']
+  promptstudio:['prompt','studio','ai','template','markdown','editor','penulis','prompt engineering','blok prompt','preview','copywriting','tulis','konsep','draft'],
+  base64:['base64','b64','encode','decode','encoder','decoder','encoding','btoa','atob','binary','konversi teks','string'],
+  gradient:['gradient','gradien','css gradient','linear gradient','radial gradient','warna','background','degradasi','color stop','css','desain'],
+  imgbase64:['image to base64','gambar ke base64','base64 image','data uri','gambar','foto','image','konversi gambar','inline image','svg'],
+  color:['color','warna','picker','palette','palet','hex','rgb','hsl','complementary','analogous','triadic','monokrom','shades','tints']
 };
 
-/* ===== [10/41] data/tools.js ===== */
+/* ===== [13/48] data/tools.js ===== */
 /* ============================================================
    DATA: tools.js — Registrasi tool (TOOLS) & kategori (CATEGORIES)
    ============================================================ */
@@ -1887,7 +2217,11 @@ const TOOLS = [
   { id:'json', name:'JSON Formatter', cat:'dev', desc:'Format JSON berantakan, validasi error, dan lihat struktur dengan syntax highlighting.', render:renderJSON, mount:mountJSON },
   { id:'word', name:'Word & Reading Time', cat:'text', desc:'Hitung jumlah kata, karakter, kalimat, dan estimasi waktu baca suatu teks.', render:renderWord, mount:mountWord },
   { id:'texttransformer', name:'Text Transformer', cat:'text', desc:'Balik, cermin, dan transformasi teks dengan berbagai mode. Live preview & copy dengan mudah.', render:renderTextTransformer, mount:mountTextTransformer },
-  { id:'promptstudio', name:'Prompt Studio', cat:'text', desc:'Editor Markdown + pembuat prompt AI. Template siap pakai, blok prompt, live preview, dan export.', render:renderPromptStudio, mount:mountPromptStudio }
+  { id:'promptstudio', name:'Prompt Studio', cat:'text', desc:'Editor Markdown + pembuat prompt AI. Template siap pakai, blok prompt, live preview, dan export.', render:renderPromptStudio, mount:mountPromptStudio },
+  { id:'base64', name:'Base64 Encoder / Decoder', cat:'dev', desc:'Encode teks ke Base64 dan decode kembali — aman untuk Unicode, dengan live convert dan deteksi otomatis.', render:renderBase64, mount:mountBase64 },
+  { id:'gradient', name:'CSS Gradient Generator', cat:'generator', desc:'Rancang gradient linear atau radial dengan color stop, preset populer, dan salin kode CSS siap pakai.', render:renderGradient, mount:mountGradient },
+  { id:'imgbase64', name:'Image to Base64', cat:'konverter', desc:'Ubah gambar menjadi string Base64 dan Data URI secara lokal — siap ditempel ke CSS atau HTML.', render:renderImgBase64, mount:mountImgBase64 },
+  { id:'color', name:'Color Picker & Palette', cat:'generator', desc:'Pilih warna, lihat nilai HEX/RGB/HSL, dan generate palette harmonis: komplementer hingga monokrom.', render:renderColor, mount:mountColor }
 ];
 
 const CATEGORIES = [
@@ -1902,7 +2236,7 @@ const CATEGORIES = [
 
 let currentFilter = 'all';
 
-/* ===== [11/41] data/fake-db.js ===== */
+/* ===== [14/48] data/fake-db.js ===== */
 /* ============================================================
    DATA: fake-db.js — Kosakata Fake Data Generator (nama, kota, jalan, domain)
    ============================================================ */
@@ -1914,7 +2248,7 @@ const FAKE_DB = {
   domain: ['gmail.com','yahoo.com','hotmail.com','outlook.com','mail.com']
 };
 
-/* ===== [12/41] data/prompt-data.js ===== */
+/* ===== [15/48] data/prompt-data.js ===== */
 /* ============================================================
    DATA: prompt-data.js — Starter, blok prompt & template Prompt Studio
    ============================================================ */
@@ -2208,7 +2542,7 @@ const PS_CATEGORIES = [
   }
 ];
 
-/* ===== [13/41] core/utils.js ===== */
+/* ===== [16/48] core/utils.js ===== */
 /* ============================================================
    CORE: utils.js — Helper DOM & UI global (sanitize, toast, copy, $, format)
    ============================================================ */
@@ -2285,7 +2619,7 @@ async function copyText(text){
   }
 }
 
-/* ===== [14/41] core/lifecycle.js ===== */
+/* ===== [17/48] core/lifecycle.js ===== */
 /* ============================================================
    CORE: lifecycle.js — Cleanup resource tool aktif (interval/rAF/observer)
    ============================================================ */
@@ -2299,7 +2633,7 @@ function runToolCleanup(){
   try { fn(); } catch(e){ console.warn('tool cleanup error:', e); }
 }
 
-/* ===== [15/41] core/router.js ===== */
+/* ===== [18/48] core/router.js ===== */
 /* ============================================================
    CORE: router.js — Hash routing (#tool/<id>) & render dispatcher
    ============================================================ */
@@ -2350,7 +2684,7 @@ document.addEventListener('keydown', e => {
   if(e.key === 'Escape' && getRoute().view === 'tool') navigate('home');
 });
 
-/* ===== [16/41] core/search.js ===== */
+/* ===== [19/48] core/search.js ===== */
 /* ============================================================
    CORE: search.js — UI pencarian live (panel, riwayat, keyboard nav)
    Logika matching murni: pure/search-engine.js (TB.SearchEngine)
@@ -2655,7 +2989,7 @@ function initSearch(){
   });
 }
 
-/* ===== [17/41] core/home.js ===== */
+/* ===== [20/48] core/home.js ===== */
 /* ============================================================
    CORE: home.js — Render beranda, grid tool, recent tools, wrapper tool view
    ============================================================ */
@@ -2755,7 +3089,7 @@ function renderTool(tool){
   tool.mount(content);
 }
 
-/* ===== [18/41] tools/qr.js ===== */
+/* ===== [21/48] tools/qr.js ===== */
 /* ============================================================
    TOOLS: qr.js — QR Code Generator [Generator]
    Tidak ada logic murni yang diekstrak (dominan wiring UI/CDN).
@@ -2830,7 +3164,7 @@ function mountQR(root){
   _toolCleanup = () => { if(obs){ obs.disconnect(); obs = null; } };
 }
 
-/* ===== [19/41] tools/password.js ===== */
+/* ===== [22/48] tools/password.js ===== */
 /* ============================================================
    TOOLS: password.js — Password Generator [Generator]
    Logika inti (charset, build, entropi): pure/crypto-helpers.js
@@ -2903,7 +3237,7 @@ function mountPassword(root){
   gen();
 }
 
-/* ===== [20/41] tools/unit.js ===== */
+/* ===== [23/48] tools/unit.js ===== */
 /* ============================================================
    TOOLS: unit.js — Konverter Unit [Konverter]
    Tabel faktor & rumus: pure/calculators.js
@@ -2960,7 +3294,7 @@ function mountUnit(root){
   up();
 }
 
-/* ===== [21/41] tools/image-resizer.js ===== */
+/* ===== [24/48] tools/image-resizer.js ===== */
 /* ============================================================
    TOOLS: image-resizer.js — Image Resizer [Konverter]
    Dimensi target, format, ukuran: pure/calculators.js
@@ -3532,7 +3866,7 @@ function mountImageResizer(root){
   };
 }
 
-/* ===== [22/41] tools/bmi.js ===== */
+/* ===== [25/48] tools/bmi.js ===== */
 /* ============================================================
    TOOLS: bmi.js — Kalkulator BMI & Kalori [Kalkulator]
    Rumus BMI/BMR/TDEE: pure/calculators.js
@@ -3567,7 +3901,7 @@ function mountBMI(root){
   $('#bmi-c', root).onclick = c; c(); 
 }
 
-/* ===== [23/41] tools/zakat.js ===== */
+/* ===== [26/48] tools/zakat.js ===== */
 /* ============================================================
    TOOLS: zakat.js — Kalkulator Zakat [Kalkulator]
    Rumus zakat & nisab: pure/calculators.js
@@ -3601,7 +3935,7 @@ function mountZakat(root){
   $('#z-c', root).onclick = c; ui(); c(); 
 }
 
-/* ===== [24/41] tools/loan.js ===== */
+/* ===== [27/48] tools/loan.js ===== */
 /* ============================================================
    TOOLS: loan.js — Kalkulator Cicilan & KPR [Kalkulator]
    Anuitas & amortisasi: pure/calculators.js
@@ -3640,7 +3974,7 @@ function mountLoan(root){
   $('#l-c', root).onclick = c; c(); 
 }
 
-/* ===== [25/41] tools/age.js ===== */
+/* ===== [28/48] tools/age.js ===== */
 /* ============================================================
    TOOLS: age.js — Kalkulator Umur & Countdown [Kalkulator]
    Hitung umur & pecah durasi: pure/calculators.js
@@ -3706,7 +4040,7 @@ function mountAge(root){
   rIn();
 }
 
-/* ===== [26/41] tools/name.js ===== */
+/* ===== [29/48] tools/name.js ===== */
 /* ============================================================
    TOOLS: name.js — Generator Nama Acak [Generator]
    Fisher-Yates: pure/crypto-helpers.js
@@ -3732,7 +4066,7 @@ function mountName(root){
   $('#n-g', root).onclick = g; g(); 
 }
 
-/* ===== [27/41] tools/decision.js ===== */
+/* ===== [30/48] tools/decision.js ===== */
 /* ============================================================
    TOOLS: decision.js — Pengambil Keputusan Acak [Simulasi]
    Parse opsi baris: pure/text-utils.js
@@ -3800,7 +4134,7 @@ function mountDecision(root){
   opts = gO(); dr(); 
 }
 
-/* ===== [28/41] tools/lorem.js ===== */
+/* ===== [31/48] tools/lorem.js ===== */
 /* ============================================================
    TOOLS: lorem.js — Lorem Ipsum Indonesia [Generator]
    Tidak ada logic murni yang diekstrak (dominan wiring UI/CDN).
@@ -3816,7 +4150,7 @@ function mountLorem(root){
   $('#l-g', root).onclick = g; g(); 
 }
 
-/* ===== [29/41] tools/gacha.js ===== */
+/* ===== [32/48] tools/gacha.js ===== */
 /* ============================================================
    TOOLS: gacha.js — Simulator Gacha [Simulasi]
    Tidak ada logic murni yang diekstrak (dominan wiring UI/CDN).
@@ -3894,7 +4228,7 @@ function mountGacha(root){
   update();
 }
 
-/* ===== [30/41] tools/mc.js ===== */
+/* ===== [33/48] tools/mc.js ===== */
 /* ============================================================
    TOOLS: mc.js — Minecraft Coordinate Converter [Konverter]
    Rasio 1:8 + floor: pure/calculators.js
@@ -3919,7 +4253,7 @@ function mountMC(root){
   c(); 
 }
 
-/* ===== [31/41] tools/uuid.js ===== */
+/* ===== [34/48] tools/uuid.js ===== */
 /* ============================================================
    TOOLS: uuid.js — UUID / ID Generator [Developer]
    UUID v4 & rejection sampling: pure/crypto-helpers.js
@@ -3957,7 +4291,7 @@ function mountUUID(root){
   $('#uuid-gen', root).onclick = generate; generate();
 }
 
-/* ===== [32/41] tools/fake.js ===== */
+/* ===== [35/48] tools/fake.js ===== */
 /* ============================================================
    TOOLS: fake.js — Fake Data Generator [Developer]
    Tidak ada logic murni yang diekstrak (dominan wiring UI/CDN).
@@ -4002,7 +4336,7 @@ function mountFake(root){
   $('#fake-gen', root).onclick = generate; generate();
 }
 
-/* ===== [33/41] tools/slug.js ===== */
+/* ===== [36/48] tools/slug.js ===== */
 /* ============================================================
    TOOLS: slug.js — Slug Generator [Developer]
    slugify: pure/text-utils.js
@@ -4036,7 +4370,7 @@ function mountSlug(root){
   input.addEventListener('input', gen); gen();
 }
 
-/* ===== [34/41] tools/hash.js ===== */
+/* ===== [37/48] tools/hash.js ===== */
 /* ============================================================
    TOOLS: hash.js — Hash Generator [Developer]
    MD5 pure-JS: pure/crypto-helpers.js (SHA via crypto.subtle)
@@ -4096,7 +4430,7 @@ async function mountHash(root){
 /* Implementasi MD5 dipindah ke src/pure/crypto-helpers.js (TB.Crypto.md5)
    agar bisa di-unit-test tanpa DOM. Lihat tests/crypto.test.js */
 
-/* ===== [35/41] tools/diff.js ===== */
+/* ===== [38/48] tools/diff.js ===== */
 /* ============================================================
    TOOLS: diff.js — Text Diff Checker [Text]
    Algoritma Myers & statistik: pure/diff-engine.js
@@ -4354,7 +4688,7 @@ function mountDiff(root){
   };
 }
 
-/* ===== [36/41] tools/markdown.js ===== */
+/* ===== [39/48] tools/markdown.js ===== */
 /* ============================================================
    TOOLS: markdown.js — Markdown Previewer [Text]
    Tidak ada logic murni yang diekstrak (dominan wiring UI/CDN).
@@ -4377,7 +4711,7 @@ function mountMarkdown(root){
   input.addEventListener('input', update); update();
 }
 
-/* ===== [37/41] tools/json.js ===== */
+/* ===== [40/48] tools/json.js ===== */
 /* ============================================================
    TOOLS: json.js — JSON Formatter [Developer]
    Parse/format/highlight: pure/json-helpers.js
@@ -4414,7 +4748,7 @@ function mountJSON(root){
   format(false);
 }
 
-/* ===== [38/41] tools/word.js ===== */
+/* ===== [41/48] tools/word.js ===== */
 /* ============================================================
    TOOLS: word.js — Word & Reading Time [Text]
    Penghitung & waktu baca: pure/text-utils.js
@@ -4457,7 +4791,7 @@ function mountWord(root){
   input.addEventListener('input', update); update();
 }
 
-/* ===== [39/41] tools/text-transformer.js ===== */
+/* ===== [42/48] tools/text-transformer.js ===== */
 /* ============================================================
    TOOLS: text-transformer.js — Text Transformer [Text]
    Map Unicode & fungsi transformasi: pure/text-transforms.js
@@ -4553,7 +4887,7 @@ function mountTextTransformer(root){
   setMode('reverse'); // state awal: hint + live preview
 }
 
-/* ===== [40/41] tools/prompt-studio.js ===== */
+/* ===== [43/48] tools/prompt-studio.js ===== */
 /* ============================================================
    TOOLS: prompt-studio.js — Prompt Studio [Text]
    Operasi string editor: pure/text-transforms.js; data template: data/prompt-data.js
@@ -4875,7 +5209,488 @@ function mountPromptStudio(root){
   };
 }
 
-/* ===== [41/41] app.js ===== */
+/* ===== [44/48] tools/base64.js ===== */
+/* ============================================================
+   TOOLS: base64.js — Base64 Encoder / Decoder [Developer]
+   Encode/decode Unicode-aman & deteksi: pure/base64.js (TB.Base64)
+   ============================================================ */
+function renderBase64(){
+  return `
+    <div class="tool-layout">
+      <div class="panel" style="grid-column:1/-1">
+        <div class="panel-title">${ICONS.base64} Mode</div>
+        <div class="segmented tt-mode" id="b64-mode">
+          <button type="button" class="active" data-mode="encode">Encode</button>
+          <button type="button" data-mode="decode">Decode</button>
+        </div>
+        <p class="field-hint" id="b64-hint" style="margin-top:12px"></p>
+      </div>
+      <div class="panel">
+        <div class="panel-title">${ICONS.base64} Input</div>
+        <textarea class="textarea mono" id="b64-input" style="min-height:220px" placeholder="Ketik atau tempel teks di sini…" aria-label="Input teks"></textarea>
+        <div class="tt-count" id="b64-in-count"></div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">${ICONS.base64} Hasil</div>
+        <textarea class="textarea mono" id="b64-output" style="min-height:220px" readonly placeholder="Hasil muncul otomatis saat mengetik…" aria-label="Hasil konversi"></textarea>
+        <div class="tt-count" id="b64-out-count"></div>
+        <div class="field-hint" id="b64-status" style="margin-top:8px" role="status"></div>
+        <div class="tt-actions">
+          <button type="button" class="btn" id="b64-copy">${ICONS.copy} Salin</button>
+          <button type="button" class="btn btn-secondary" id="b64-swap">${ICONS.refresh} Swap</button>
+          <button type="button" class="btn btn-ghost" id="b64-clear">Clear</button>
+        </div>
+      </div>
+    </div>`;
+}
+
+function mountBase64(root){
+  const input = $('#b64-input', root), output = $('#b64-output', root);
+  const hint = $('#b64-hint', root), status = $('#b64-status', root);
+  const inCount = $('#b64-in-count', root), outCount = $('#b64-out-count', root);
+
+  const HINTS = {
+    encode: 'Mengubah teks menjadi Base64 — aman untuk Unicode & emoji (encoding UTF-8). Konversi berjalan langsung saat mengetik.',
+    decode: 'Mengubah Base64 kembali menjadi teks. Spasi/baris baru pada input diabaikan; input dideteksi otomatis apakah Base64 valid.'
+  };
+
+  let mode = 'encode';
+
+  function renderCounts(){
+    const ic = TB.TextUtils.countCodePoints(input.value), oc = TB.TextUtils.countCodePoints(output.value);
+    inCount.textContent = `${TB.TextUtils.formatNumberID(ic, 0)} karakter`;
+    outCount.textContent = `${TB.TextUtils.formatNumberID(oc, 0)} karakter`;
+  }
+  function setStatus(msg, tone){
+    status.textContent = msg;
+    status.style.color = tone ? `var(--${tone})` : '';
+  }
+  /** Live convert — encode tidak pernah gagal; decode menampilkan error ramah. */
+  function update(){
+    const src = input.value;
+    if(!src){ output.value = ''; setStatus(''); renderCounts(); return; }
+    if(mode === 'encode'){
+      output.value = TB.Base64.encode(src);
+      setStatus('');
+    } else {
+      // Deteksi otomatis: hanya coba decode bila input terlihat seperti Base64.
+      if(!TB.Base64.isLikelyBase64(src)){
+        output.value = '';
+        setStatus('Input belum terlihat seperti Base64 yang valid', 'warning');
+      } else {
+        try { output.value = TB.Base64.decode(src); setStatus('✓ Base64 valid — berhasil didecode', 'success'); }
+        catch(e){ output.value = ''; setStatus('✗ ' + e.message, 'danger'); }
+      }
+    }
+    renderCounts();
+  }
+  function setMode(m){
+    if(m !== 'encode' && m !== 'decode') return;
+    mode = m;
+    $$('#b64-mode button', root).forEach(b => b.classList.toggle('active', b.dataset.mode === m));
+    hint.textContent = HINTS[m];
+    update();
+  }
+
+  $$('#b64-mode button', root).forEach(btn => { btn.onclick = () => setMode(btn.dataset.mode); });
+  input.addEventListener('input', update);
+
+  $('#b64-copy', root).onclick = () => {
+    if(!output.value){ toast('Tidak ada hasil untuk disalin'); return; }
+    copyText(output.value);
+  };
+  $('#b64-swap', root).onclick = () => {
+    const i = input.value, o = output.value;
+    input.value = o; output.value = i;
+    // Mode ikut dibalik agar hasil langsung "dikembalikan" (encode->decode /
+    // sebaliknya) — tanpa ini swap di mode encode justru encode ulang hasilnya.
+    setMode(mode === 'encode' ? 'decode' : 'encode');
+    toast('Input dan hasil ditukar');
+  };
+  $('#b64-clear', root).onclick = () => {
+    input.value = ''; output.value = '';
+    update();
+    input.focus();
+  };
+
+  setMode('encode'); // state awal: hint + counter
+}
+
+/* ===== [45/48] tools/gradient.js ===== */
+/* ============================================================
+   TOOLS: gradient.js — CSS Gradient Generator [Generator]
+   Builder CSS & preset: pure/gradient.js (TB.Gradient)
+   ============================================================ */
+function renderGradient(){
+  return `
+    <div class="tool-layout">
+      <div class="panel">
+        <div class="panel-title">${ICONS.gradient} Pengaturan</div>
+        <div class="field">
+          <label class="field-label">Tipe Gradient</label>
+          <div class="segmented" id="gr-type">
+            <button type="button" class="active" data-type="linear">Linear</button>
+            <button type="button" data-type="radial">Radial</button>
+          </div>
+        </div>
+        <div class="field" id="gr-dir-field">
+          <label class="field-label">Arah</label>
+          <select class="select" id="gr-dir"></select>
+        </div>
+        <div class="field" id="gr-angle-field" style="display:none">
+          <label class="field-label">Sudut Custom</label>
+          <div class="input-group"><input type="number" class="input" id="gr-angle" value="45" min="0" max="360" step="1"><span class="suffix">deg</span></div>
+        </div>
+        <div class="field">
+          <label class="field-label">Color Stops <span class="field-hint">minimal 2</span></label>
+          <div id="gr-stops" style="display:flex;flex-direction:column;gap:8px"></div>
+          <button type="button" class="btn btn-secondary btn-block" id="gr-add" style="margin-top:10px">+ Tambah Color Stop</button>
+        </div>
+        <div class="field">
+          <label class="field-label">Preset</label>
+          <div class="ir-quick" id="gr-presets"></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">${ICONS.gradient} Preview &amp; Kode CSS</div>
+        <div id="gr-preview" style="height:200px;border:1px solid var(--border);border-radius:var(--radius-md);margin-bottom:16px"></div>
+        <div class="field"><label class="field-label">Kode CSS</label>
+          <textarea class="textarea mono" id="gr-css" style="min-height:96px" readonly aria-label="Kode CSS gradient"></textarea>
+        </div>
+        <div class="tt-actions">
+          <button type="button" class="btn btn-block" id="gr-copy">${ICONS.copy} Salin CSS</button>
+        </div>
+      </div>
+    </div>`;
+}
+
+function mountGradient(root){
+  const dirSel = $('#gr-dir', root), angleField = $('#gr-angle-field', root), angleIn = $('#gr-angle', root);
+  const dirField = $('#gr-dir-field', root), stopsWrap = $('#gr-stops', root);
+  const preview = $('#gr-preview', root), cssOut = $('#gr-css', root);
+
+  const state = { type: 'linear', direction: 'to bottom right', angle: 45 };
+  // Default memakai warna aksen aplikasi agar preview pertama langsung enak dilihat.
+  let stops = [{ color: '#a8421c', pos: 0 }, { color: '#d4a574', pos: 100 }];
+
+  /* ---------- opsi arah ---------- */
+  dirSel.innerHTML = TB.Gradient.LINEAR_DIRECTIONS
+      .map(d => `<option value="${d}"${d === state.direction ? ' selected' : ''}>${d}</option>`).join('')
+    + '<option value="custom">Custom (sudut)…</option>';
+
+  /* ---------- preset ---------- */
+  const presetsWrap = $('#gr-presets', root);
+  presetsWrap.innerHTML = TB.Gradient.GRADIENT_PRESETS
+    .map((p, i) => `<button type="button" class="chip-btn" data-preset="${i}">${p.name}</button>`).join('');
+  function markPreset(idx){
+    $$('#gr-presets .chip-btn', root).forEach(b => b.classList.toggle('active', +b.dataset.preset === idx));
+  }
+  presetsWrap.querySelectorAll('.chip-btn').forEach(btn => {
+    btn.onclick = () => {
+      const p = TB.Gradient.GRADIENT_PRESETS[+btn.dataset.preset];
+      stops = p.colors.map((c, i) => ({ color: c.toLowerCase(), pos: Math.round(i * 100 / (p.colors.length - 1)) }));
+      markPreset(+btn.dataset.preset);
+      renderStops();
+      refresh();
+    };
+  });
+
+  /* ---------- daftar color stop ---------- */
+  function renderStops(){
+    stopsWrap.innerHTML = stops.map((s, i) => `
+      <div class="field-row" style="grid-template-columns:auto 1fr auto;align-items:center;gap:8px" data-idx="${i}">
+        <input type="color" value="${s.color}" aria-label="Warna stop ${i + 1}"
+               style="width:48px;height:40px;padding:3px;border:1px solid var(--border);border-radius:8px;background:var(--surface);cursor:pointer">
+        <div class="input-group"><input type="number" class="input pos" value="${s.pos}" min="0" max="100" step="1" aria-label="Posisi stop ${i + 1}"><span class="suffix">%</span></div>
+        <button type="button" class="btn btn-ghost del" style="padding:9px 12px" aria-label="Hapus stop ${i + 1}">✕</button>
+      </div>`).join('');
+    stopsWrap.querySelectorAll('[data-idx]').forEach(row => {
+      const idx = +row.dataset.idx;
+      row.querySelector('input[type="color"]').addEventListener('input', e => {
+        stops[idx].color = e.target.value; markPreset(-1); refresh();
+      });
+      row.querySelector('.pos').addEventListener('input', e => {
+        stops[idx].pos = TB.Gradient.clampPos(e.target.value); markPreset(-1); refresh();
+      });
+      row.querySelector('.del').onclick = () => {
+        if(stops.length <= 2){ toast('Minimal 2 color stop'); return; }
+        stops.splice(idx, 1); markPreset(-1); renderStops(); refresh();
+      };
+    });
+  }
+
+  $('#gr-add', root).onclick = () => {
+    // Stop baru: posisi di tengah rentang saat ini, warna netral yang kontras.
+    const pos = Math.round((stops[0].pos + stops[stops.length - 1].pos) / 2);
+    stops.push({ color: '#ffffff', pos: TB.Gradient.clampPos(pos) });
+    markPreset(-1); renderStops(); refresh();
+  };
+
+  /* ---------- tipe & arah ---------- */
+  $$('#gr-type button', root).forEach(btn => {
+    btn.onclick = () => {
+      state.type = btn.dataset.type;
+      $$('#gr-type button', root).forEach(b => b.classList.toggle('active', b === btn));
+      dirField.style.display = state.type === 'linear' ? '' : 'none';
+      if(state.type !== 'linear') angleField.style.display = 'none';
+      else if(dirSel.value === 'custom') angleField.style.display = '';
+      refresh();
+    };
+  });
+  dirSel.onchange = () => {
+    state.direction = dirSel.value;
+    angleField.style.display = dirSel.value === 'custom' ? '' : 'none';
+    refresh();
+  };
+  angleIn.oninput = () => { state.angle = TB.Calc.clampInt(angleIn.value, 0, 360); refresh(); };
+
+  /* ---------- generate & preview ---------- */
+  function refresh(){
+    const css = TB.Gradient.buildGradientCSS({ type: state.type, direction: state.direction, angle: state.angle, stops });
+    preview.style.background = css;
+    cssOut.value = `background: ${css};`;
+  }
+
+  $('#gr-copy', root).onclick = () => {
+    if(!cssOut.value){ toast('Belum ada kode CSS untuk disalin'); return; }
+    copyText(cssOut.value);
+  };
+
+  renderStops();
+  refresh();
+}
+
+/* ===== [46/48] tools/imgbase64.js ===== */
+/* ============================================================
+   TOOLS: imgbase64.js — Image to Base64 [Konverter]
+   Base64/Data URI: pure/base64.js (TB.Base64) · ukuran: TB.Calc.formatBytes
+   ============================================================ */
+function renderImgBase64(){
+  return `
+    <div class="tool-layout single">
+      <div class="panel">
+        <div class="panel-title">${ICONS.imgbase64} Upload Gambar</div>
+        <div class="dropzone" id="ib-drop" tabindex="0" role="button" aria-label="Upload gambar">
+          <input type="file" id="ib-file" accept="image/png,image/jpeg,image/webp,image/gif,image/svg+xml,image/bmp" class="sr-only">
+          <div class="dz-icon">${ICONS.imgbase64}</div>
+          <div class="dz-title">Tarik &amp; letakkan gambar di sini</div>
+          <div class="dz-sub">atau klik untuk memilih — PNG, JPG, WEBP, GIF, SVG</div>
+          <div class="dz-hint">maks 50 MB · 100% lokal, gambar tidak diunggah ke server mana pun</div>
+        </div>
+      </div>
+
+      <div class="panel" id="ib-empty">
+        <div class="empty">Upload gambar untuk melihat hasil Base64 di sini.</div>
+      </div>
+
+      <div class="panel" id="ib-result-panel" style="display:none">
+        <div class="panel-title">${ICONS.imgbase64} Hasil</div>
+        <div class="ir-cmp" style="margin-bottom:16px">
+          <div class="ir-cmp-label">Preview</div>
+          <img class="ir-cmp-img" id="ib-img" alt="Preview gambar">
+          <div class="ir-cmp-meta"><span id="ib-name" style="word-break:break-all"></span></div>
+        </div>
+        <div class="stat-grid" style="margin-bottom:16px">
+          <div class="stat-card"><div class="label">Ukuran File</div><div class="value" id="ib-size" style="font-size:18px">—</div><div class="sub">file asli</div></div>
+          <div class="stat-card"><div class="label">Panjang Base64</div><div class="value" id="ib-len" style="font-size:18px">—</div><div class="sub">karakter</div></div>
+          <div class="stat-card"><div class="label">Selisih Ukuran</div><div class="value" id="ib-ratio" style="font-size:18px">—</div><div class="sub">string vs file</div></div>
+        </div>
+        <div class="field">
+          <label class="field-label">Data URI Lengkap</label>
+          <textarea class="textarea mono" id="ib-uri" style="min-height:110px" readonly aria-label="Data URI"></textarea>
+        </div>
+        <div class="tt-actions">
+          <button type="button" class="btn" id="ib-copy-uri">${ICONS.copy} Salin Data URI</button>
+          <button type="button" class="btn btn-secondary" id="ib-copy-b64">Salin Base64</button>
+          <button type="button" class="btn btn-ghost" id="ib-clear">Bersihkan</button>
+        </div>
+      </div>
+    </div>`;
+}
+
+function mountImgBase64(root){
+  const drop = $('#ib-drop', root), fileInput = $('#ib-file', root);
+  const emptyPanel = $('#ib-empty', root), resultPanel = $('#ib-result-panel', root);
+  const img = $('#ib-img', root), nameEl = $('#ib-name', root);
+  const sizeEl = $('#ib-size', root), lenEl = $('#ib-len', root), ratioEl = $('#ib-ratio', root);
+  const uriEl = $('#ib-uri', root);
+
+  const MAX_FILE = 50 * 1024 * 1024;   // sama dengan Image Resizer
+  let urls = [];                       // ObjectURL aktif (untuk cleanup)
+  let current = { b64: '', uri: '' };
+
+  function revokeAll(){ urls.forEach(u => { try{ URL.revokeObjectURL(u); }catch(_){} }); urls = []; }
+
+  async function handleFile(f){
+    if(!f || !f.type || !f.type.startsWith('image/')){ toast('File bukan gambar'); return; }
+    if(f.size > MAX_FILE){ toast('File lebih dari 50 MB'); return; }
+    try{
+      // Baca sebagai byte lalu encode manual (bukan FileReader.readAsDataURL)
+      // agar string Base64 murni & Data URI bisa dikelola terpisah.
+      const buf = await f.arrayBuffer();
+      const b64 = TB.Base64.bytesToBase64(new Uint8Array(buf));
+      revokeAll();
+      const url = URL.createObjectURL(f); urls.push(url);
+      img.src = url;
+      current.b64 = b64;
+      current.uri = TB.Base64.dataUri(f.type, b64);
+      nameEl.textContent = f.name;
+      sizeEl.textContent = TB.Calc.formatBytes(f.size);
+      lenEl.textContent = TB.TextUtils.formatNumberID(b64.length, 0);
+      const pct = Math.round((b64.length - f.size) / f.size * 100);
+      ratioEl.textContent = (pct >= 0 ? '+' : '') + pct + '%';
+      uriEl.value = current.uri;
+      emptyPanel.style.display = 'none';
+      resultPanel.style.display = '';
+    }catch(e){
+      console.warn('Gagal membaca gambar:', e);
+      toast('Gagal membaca gambar — coba file lain');
+    }
+  }
+
+  /* ---------- upload: klik, keyboard, drag & drop ---------- */
+  drop.addEventListener('click', () => fileInput.click());
+  drop.addEventListener('keydown', e => {
+    if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); fileInput.click(); }
+  });
+  ['dragenter','dragover'].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.add('dragover'); }));
+  ['dragleave','drop'].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.remove('dragover'); }));
+  drop.addEventListener('drop', e => handleFile(e.dataTransfer.files[0]));
+  fileInput.addEventListener('change', () => { handleFile(fileInput.files[0]); fileInput.value = ''; });
+  // Cegah browser membuka file bila pengguna menjatuhkan di luar dropzone.
+  const prevent = e => e.preventDefault();
+  window.addEventListener('dragover', prevent);
+  window.addEventListener('drop', prevent);
+  const removeWindowListeners = () => { window.removeEventListener('dragover', prevent); window.removeEventListener('drop', prevent); };
+
+  /* ---------- aksi ---------- */
+  $('#ib-copy-uri', root).onclick = () => {
+    if(!current.uri){ toast('Belum ada gambar diproses'); return; }
+    copyText(current.uri);
+  };
+  $('#ib-copy-b64', root).onclick = () => {
+    if(!current.b64){ toast('Belum ada gambar diproses'); return; }
+    copyText(current.b64);
+  };
+  $('#ib-clear', root).onclick = () => {
+    revokeAll();
+    current = { b64: '', uri: '' };
+    uriEl.value = ''; img.removeAttribute('src');
+    resultPanel.style.display = 'none';
+    emptyPanel.style.display = '';
+  };
+
+  /* ---------- cleanup: revoke ObjectURL + lepas listener window ---------- */
+  _toolCleanup = () => { revokeAll(); removeWindowListeners(); current = { b64: '', uri: '' }; };
+}
+
+/* ===== [47/48] tools/color.js ===== */
+/* ============================================================
+   TOOLS: color.js — Color Picker & Palette [Generator]
+   Konversi HEX/RGB/HSL + palette: pure/color-helpers.js (TB.Color)
+   ============================================================ */
+function renderColor(){
+  return `
+    <div class="tool-layout">
+      <div class="panel">
+        <div class="panel-title">${ICONS.color} Pilih Warna</div>
+        <div class="field">
+          <label class="field-label">Pemilih Warna</label>
+          <div style="display:flex;gap:10px;align-items:center">
+            <input type="color" id="cl-picker" value="#a8421c" aria-label="Color picker"
+                   style="width:64px;height:44px;padding:3px;border:1px solid var(--border);border-radius:10px;background:var(--surface);cursor:pointer">
+            <div class="input-group" style="flex:1"><span class="suffix">#</span><input type="text" class="input mono" id="cl-hex" value="a8421c" maxlength="7" spellcheck="false" aria-label="Nilai HEX"></div>
+          </div>
+          <div class="field-hint" id="cl-hex-status" style="margin-top:6px" role="status"></div>
+        </div>
+        <div class="field"><label class="field-label">HEX</label>
+          <div class="input-group"><input type="text" class="input mono" id="cl-v-hex" readonly style="font-size:13px"><button class="copy-btn" id="cl-c-hex">${ICONS.copy}</button></div>
+        </div>
+        <div class="field"><label class="field-label">RGB</label>
+          <div class="input-group"><input type="text" class="input mono" id="cl-v-rgb" readonly style="font-size:13px"><button class="copy-btn" id="cl-c-rgb">${ICONS.copy}</button></div>
+        </div>
+        <div class="field"><label class="field-label">HSL</label>
+          <div class="input-group"><input type="text" class="input mono" id="cl-v-hsl" readonly style="font-size:13px"><button class="copy-btn" id="cl-c-hsl">${ICONS.copy}</button></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">${ICONS.color} Palette Otomatis <button class="copy-btn" id="cl-copy-all" style="float:right">${ICONS.copy} Salin Semua</button></div>
+        <div id="cl-palettes"></div>
+        <p class="field-hint" style="margin-top:10px">Klik warna mana pun untuk menjadikannya warna utama.</p>
+      </div>
+    </div>`;
+}
+
+function mountColor(root){
+  const picker = $('#cl-picker', root), hexIn = $('#cl-hex', root), hexStatus = $('#cl-hex-status', root);
+  const vHex = $('#cl-v-hex', root), vRgb = $('#cl-v-rgb', root), vHsl = $('#cl-v-hsl', root);
+  const palettesEl = $('#cl-palettes', root);
+
+  const SCHEMES = [
+    ['complementary', 'Komplementer'],
+    ['analogous', 'Analogous'],
+    ['triadic', 'Triadic'],
+    ['monochromatic', 'Monokromatik'],
+    ['shadesTints', 'Shades & Tints']
+  ];
+
+  let hex = '#a8421c';   // mulai dari warna aksen aplikasi
+  let lastPalettes = null;
+
+  function renderValues(){
+    const rgb = TB.Color.hexToRgb(hex);
+    const hsl = TB.Color.rgbToHsl(rgb.r, rgb.g, rgb.b);
+    vHex.value = hex;
+    vRgb.value = TB.Color.formatRgb(rgb);
+    vHsl.value = TB.Color.formatHsl(hsl);
+  }
+  function renderPalettes(){
+    lastPalettes = TB.Color.generatePalettes(hex);
+    palettesEl.innerHTML = SCHEMES.map(([key, label]) => `
+      <div style="margin-bottom:14px">
+        <div class="field-label" style="margin-bottom:8px">${label}</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px">
+          ${lastPalettes[key].map(c => `<button type="button" data-c="${c}" title="${c}" aria-label="Jadikan ${c} warna utama"
+            style="width:44px;height:44px;border-radius:10px;border:1px solid var(--border);background:${c};cursor:pointer"></button>`).join('')}
+        </div>
+      </div>`).join('');
+    palettesEl.querySelectorAll('[data-c]').forEach(btn => {
+      btn.onclick = () => { setColor(btn.dataset.c); toast(`Warna ${btn.dataset.c} dijadikan warna utama`); };
+    });
+  }
+  /** Set warna utama & segarkan seluruh tampilan. @param {string} h HEX ternormalisasi */
+  function setColor(h){
+    hex = h;
+    picker.value = hex;
+    hexIn.value = hex.slice(1);
+    hexStatus.textContent = '';
+    renderValues();
+    renderPalettes();
+  }
+
+  /* ---------- input warna ---------- */
+  picker.addEventListener('input', () => setColor(TB.Color.normalizeHex(picker.value)));
+  hexIn.addEventListener('input', () => {
+    const n = TB.Color.normalizeHex(hexIn.value);
+    if(n){ setColor(n); }
+    else { hexStatus.textContent = 'HEX belum valid (3 atau 6 digit heksadesimal)'; hexStatus.style.color = 'var(--warning)'; }
+  });
+
+  /* ---------- salin ---------- */
+  const copyValue = el => { if(el.value) copyText(el.value); };
+  $('#cl-c-hex', root).onclick = () => copyValue(vHex);
+  $('#cl-c-rgb', root).onclick = () => copyValue(vRgb);
+  $('#cl-c-hsl', root).onclick = () => copyValue(vHsl);
+  $('#cl-copy-all', root).onclick = () => {
+    if(!lastPalettes){ toast('Belum ada palette'); return; }
+    const text = SCHEMES.map(([key, label]) => `${label}: ${lastPalettes[key].join(', ')}`).join('\n');
+    copyText(text);
+  };
+
+  setColor(hex); // state awal
+}
+
+/* ===== [48/48] app.js ===== */
 /* ============================================================
    INIT — bootstrap aplikasi (WAJIB file terakhir dalam bundel)
    ============================================================ */

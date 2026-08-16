@@ -11,5 +11,8 @@ require('./text-transforms.test.js');
 require('./crypto.test.js');
 require('./search.test.js');
 require('./json.test.js');
+require('./base64.test.js');
+require('./color.test.js');
+require('./gradient.test.js');
 
 require('./harness.js').summary();

@@ -25,5 +25,9 @@ const ALIASES = {
   json:['json','format','beautify','minify','validate','pretty print','api','parse'],
   word:['word','kata','hitung kata','word count','karakter','reading time','waktu baca','counter'],
   texttransformer:['text','teks','reverse','balik','mirror','cermin','flip','terbalik','upside down','transformasi','transformer','membalik','balik kata','reverse words','kecil','besar','kalimat'],
-  promptstudio:['prompt','studio','ai','template','markdown','editor','penulis','prompt engineering','blok prompt','preview','copywriting','tulis','konsep','draft']
+  promptstudio:['prompt','studio','ai','template','markdown','editor','penulis','prompt engineering','blok prompt','preview','copywriting','tulis','konsep','draft'],
+  base64:['base64','b64','encode','decode','encoder','decoder','encoding','btoa','atob','binary','konversi teks','string'],
+  gradient:['gradient','gradien','css gradient','linear gradient','radial gradient','warna','background','degradasi','color stop','css','desain'],
+  imgbase64:['image to base64','gambar ke base64','base64 image','data uri','gambar','foto','image','konversi gambar','inline image','svg'],
+  color:['color','warna','picker','palette','palet','hex','rgb','hsl','complementary','analogous','triadic','monokrom','shades','tints']
 };

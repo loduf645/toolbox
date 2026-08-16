@@ -21,8 +21,10 @@ const { JSDOM } = require('jsdom');
 const TOOL_IDS = [
   'qr','password','unit','imageresizer','bmi','zakat','loan','age','name',
   'decision','lorem','gacha','mc','uuid','fake','slug','hash','diff',
-  'markdown','json','word','texttransformer','promptstudio'
+  'markdown','json','word','texttransformer','promptstudio',
+  'base64','gradient','imgbase64','color'
 ];
+const EXPECTED_TOOL_COUNT = 27;
 
 // Tool dengan output acak tidak bisa dibandingkan byte-per-byte.
 const RANDOM_TOOLS = new Set(['password', 'name', 'uuid', 'fake', 'gacha']);
@@ -34,6 +36,8 @@ const CANVAS_TOOLS = new Set(['decision']);
 // comparison melawan versi lama, perbedaan pada kunci ini dilaporkan sebagai
 // "sesuai harapan", bukan kegagalan.
 const KNOWN_FIX_DIFFS = new Set(['zakatFitrahNeg', 'loanExtreme', 'psAutosaveFlush', 'searchEmpty', 'searchEnter']);
+// Interaksi milik tool yang baru ditambahkan (tidak ada di versi pembanding lama).
+const NEW_TOOL_INTERACTIONS = new Set(['base64Encode', 'base64Decode', 'gradientCss', 'colorValues']);
 // Error di versi lama yang hilang karena bugnya sudah diperbaiki.
 const KNOWN_FIX_ERROR_PATTERNS = [/suggestTerms is not defined/, /norm is not defined/];
 // Keterbatasan lingkungan jsdom (bukan bug aplikasi): scrollIntoView tidak
@@ -64,6 +68,7 @@ async function runSmoke(htmlPath){
   const grid = doc.getElementById('tools-grid');
   snap.home = {
     toolCount: grid ? grid.querySelectorAll('.tool-card').length : -1,
+    toolIds: grid ? [...grid.querySelectorAll('.tool-card')].map(c => c.dataset.id) : [],
     countLabel: (doc.getElementById('tools-count') || {}).textContent
   };
 
@@ -226,6 +231,22 @@ async function runSmoke(htmlPath){
     await go('age');
     click('#a-c');
     interact.age = grab('#a-out');
+
+    /* ---------- tool baru (v4.4) — hanya direkam bila tool-nya ada ---------- */
+    await go('base64');
+    if(doc.querySelector('#b64-input')){
+      setInput('#b64-input', 'Halo Dunia!');
+      interact.base64Encode = grab('#b64-output');
+      click('#b64-swap');   // swap membalik mode encode->decode: hasil kembali ke teks asal
+      interact.base64Decode = grab('#b64-output');
+    }
+
+    await go('gradient');
+    if(doc.querySelector('#gr-css')) interact.gradientCss = grab('#gr-css');
+
+    await go('color');
+    if(doc.querySelector('#cl-v-rgb')) interact.colorValues = grab('#cl-v-rgb') + '|' + grab('#cl-v-hsl');
+    // imgbase64 butuh File API — cukup diverifikasi mount lewat loop tool di atas.
   } catch(e){
     interact.error = String(e);
   }
@@ -250,7 +271,10 @@ async function main(){
   let fail = 0;
 
   console.log(`\nBeranda: ${snapA.home.toolCount} tool di grid (label: ${JSON.stringify(snapA.home.countLabel)})`);
-  if(snapA.home.toolCount !== 23){ console.log('  ✗ jumlah tool != 23'); fail++; }
+  if(snapA.home.toolCount !== EXPECTED_TOOL_COUNT){
+    if(b) console.log(`  (info) file pertama punya ${snapA.home.toolCount} tool (versi lama); ${EXPECTED_TOOL_COUNT} tool dicek pada file kedua`);
+    else { console.log(`  ✗ jumlah tool != ${EXPECTED_TOOL_COUNT} (dapat ${snapA.home.toolCount})`); fail++; }
+  }
   if(snapA.searchSandi !== undefined){
     console.log(`Pencarian "sandi": ${snapA.searchSandi} hasil (diharapkan 1)`);
     if(snapA.searchSandi !== 1) fail++;
@@ -258,6 +282,7 @@ async function main(){
   for(const id of TOOL_IDS){
     const r = snapA.tools[id];
     if(r.ok){ console.log('  ✓ tool terbuka: ' + id); }
+    else if(b && !(snapA.home.toolIds || []).includes(id)){ console.log('  (info) tool tidak ada di versi lama: ' + id); }
     else { console.log(`  ✗ tool GAGAL: ${id} — ${r.error || snapA.errors.join('; ')}`); fail++; }
   }
   const realErrors = snapA.errors.filter(e => !JSDOM_ARTIFACT_PATTERNS.some(re => re.test(e)));
@@ -284,13 +309,27 @@ async function main(){
     } else if(fixedAway(snapB.errors).length){
       fail++; console.log('  ✗ bug yang seharusnya sudah diperbaiki masih muncul di file B');
     }
+    const idsA = new Set(snapA.home.toolIds || []);
     if(snapA.home.toolCount !== snapB.home.toolCount){
-      console.log(`  ✗ jumlah tool grid berbeda: ${snapA.home.toolCount} vs ${snapB.home.toolCount}`); fail++;
+      const missing = (snapA.home.toolIds || []).filter(id => !snapB.home.toolIds.includes(id));
+      const added = snapB.home.toolIds.filter(id => !idsA.has(id));
+      if(missing.length){ fail++; console.log('  ✗ tool lama hilang di B: ' + missing.join(', ')); }
+      if(added.length) console.log(`  ✓ tool baru ditambahkan (${added.length}): ` + added.join(', '));
+      if(!missing.length && !added.length){ fail++; console.log('  ✗ jumlah tool berbeda tanpa penambahan/pengurangan jelas'); }
+    }
+    if(snapB.home.toolCount !== EXPECTED_TOOL_COUNT){
+      fail++; console.log(`  ✗ jumlah tool file kedua != ${EXPECTED_TOOL_COUNT} (dapat ${snapB.home.toolCount})`);
     }
     if(snapA.searchSandi !== snapB.searchSandi){
       console.log(`  ✗ hasil pencarian berbeda: ${snapA.searchSandi} vs ${snapB.searchSandi}`); fail++;
     }
     for(const id of TOOL_IDS){
+      // Tool yang tidak ada di versi A (tool baru) diharapkan hanya ada di B.
+      if(!idsA.has(id)){
+        if(snapB.tools[id] && snapB.tools[id].ok) console.log('  ✓ tool baru di B terbuka normal: ' + id);
+        else { fail++; console.log('  ✗ tool baru gagal terbuka di B: ' + id); }
+        continue;
+      }
       const na = norm(snapA.tools[id], id), nb = norm(snapB.tools[id], id);
       if(na === nb){ console.log('  ✓ identik: ' + id); }
       else {
@@ -306,9 +345,14 @@ async function main(){
     // Bandingkan hasil interaksi (event wiring)
     const keysA = Object.keys(snapA.interact || {}).sort();
     const keysB = Object.keys(snapB.interact || {}).sort();
-    if(JSON.stringify(keysA) !== JSON.stringify(keysB)){
-      fail++; console.log('  ✗ kunci interaksi berbeda:', keysA, keysB);
-    } else {
+    const onlyB = keysB.filter(k => !keysA.includes(k));
+    const onlyA = keysA.filter(k => !keysB.includes(k));
+    const unexpectedOnlyB = onlyB.filter(k => !NEW_TOOL_INTERACTIONS.has(k));
+    if(onlyA.length || unexpectedOnlyB.length){
+      fail++; console.log('  ✗ kunci interaksi berbeda tak terduga. hanya A:', onlyA, '| hanya B:', unexpectedOnlyB);
+    }
+    if(onlyB.length) console.log('  ✓ interaksi tool baru (hanya di B): ' + onlyB.join(', '));
+    {
       for(const k of keysA){
         if(snapA.interact[k] === snapB.interact[k]){
           console.log('  ✓ interaksi identik: ' + k);
